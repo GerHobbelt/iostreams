@@ -17,7 +17,7 @@
 #include <boost/throw_exception.hpp>
 #include <boost/iostreams/detail/config/dyn_link.hpp>
 #include <boost/iostreams/filter/zlib.hpp> 
-#include "zlib.h"   // Jean-loup Gailly's and Mark Adler's "zlib.h" header.
+#include "zlib-ng.h"   // Jean-loup Gailly's and Mark Adler's "zlib.h" header.
                     // To configure Boost to work with zlib, see the 
                     // installation instructions here:
                     // http://boost.org/libs/iostreams/doc/index.html?path=7
