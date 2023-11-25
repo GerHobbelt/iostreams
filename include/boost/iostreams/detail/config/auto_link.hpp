@@ -16,6 +16,13 @@
 #endif              
 
 #if defined(BOOST_EXTERNAL_LIB_NAME)
+
+#pragma message ("Monolithic builds SHOULD NOT produce pesky boost::auto_link #pragma comment(lib, xyz) linker instructions. This is by design; if you must, add them by hand, but really your MSVC projects' dependency chain should take care of this by itself.")
+
+#error XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#if !defined(BUILD_MONOLITHIC)
+
 # if defined(BOOST_MSVC) \
      || defined(__BORLANDC__) && !defined(__clang__) \
      || (defined(__MWERKS__) && defined(_WIN32) && (__MWERKS__ >= 0x3000)) \
@@ -24,6 +31,13 @@
 #  pragma comment(lib, BOOST_EXTERNAL_LIB_NAME)
 # endif
 # undef BOOST_EXTERNAL_LIB_NAME
+
+#else    // BUILD_MONOLITHIC
+
+#pragma message ("Monolithic builds DO NOT produce pesky boost::auto_link #pragma comment(lib, xyz) linker instructions. This is by design; if you must, add them by hand, but really your MSVC projects' dependency chain should take care of this by itself.")
+
+#endif   // BUILD_MONOLITHIC
+
 #endif
 
 //------------------Enable automatic library variant selection----------------// 
