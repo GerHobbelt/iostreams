@@ -24,8 +24,14 @@
      (defined(__ICL) && defined(_MSC_EXTENSIONS)) \
      /**/
 
+
+#pragma message ("Monolithic builds SHOULD NOT produce pesky boost::auto_link #pragma comment(lib, xyz) linker instructions. This is by design; if you must, add them by hand, but really your MSVC projects' dependency chain should take care of this by itself.")
+
+
 // Specify the name of the .lib file.
+#if !defined(BUILD_MONOLITHIC)
 #  pragma comment(lib, BOOST_STRINGIZE(BOOST_ZLIB_BINARY))
+#endif
 # endif
 #else 
 # if !defined(BOOST_IOSTREAMS_SOURCE) && \
